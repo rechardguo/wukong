@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+</head>
+
+<body>
+  <div id="alert"></div>
+  <div class="container-fluid">
+    <div class="container">
+      <p class="text-center">client list</p>
+      <table class="table table-sm  table-bordered border-primary">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">cid</th>
+            <th scope="col">host</th>
+            <th scope="col">port</th>
+          </tr>
+        </thead>
+        <tbody id="clients">
+        </tbody>
+      </table>
+    </div>
+    <div class="container">
+      <button type="button" onclick="execute()" class="btn btn-primary">立即执行</button>
+      定时0:30分执行
+      <div class="container-fluid" id="result">
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Include Axios via CDN -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+
+    // Now you can use Axios in your script
+    axios.get('http://localhost:3000/getAllClients')
+      .then(response => {
+        //console.info(response.data)
+        handle(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+
+    function handle(data) {
+      let clients = document.getElementById("clients");
+      if(!data||data.length==0){
+        return ;
+      }
+      data.forEach((element,index) => {
+        let newRow = document.createElement("tr");
+        let cell0 = document.createElement("td");
+        let cell1 = document.createElement("td");
+        let cell2 = document.createElement("td");
+        let cell3 = document.createElement("td");
+        //let cell4 = document.createElement("td");
+        cell0.textContent = index+1;
+        cell1.textContent = element.cid
+        cell2.textContent = element.ip;
+        cell3.textContent = element.port;
+        //cell4.textContent = element.processingTasks;
+
+        // Append cells to the new row
+        newRow.appendChild(cell0);
+        newRow.appendChild(cell1);
+        newRow.appendChild(cell2);
+        newRow.appendChild(cell3);
+        //newRow.appendChild(cell4);
+
+        // Append the new row to the table body
+        clients.appendChild(newRow);
+      });
+
+    }
+
+    function execute(){
+      axios.get('http://localhost:3000/execute')
+      .then(response => {
+        if(response.data.code!=0){
+          alert(response.data.msg,"danger");
+        }else{
+          alert("protractor start","success");
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+    }
+
+    function alert(message, type){
+      const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+
+      const alert = (message, type) => {
+        const wrapper = document.createElementById('alert')
+        wrapper.innerHTML = [
+          `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+          `   <div>${message}</div>`,
+          '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+          '</div>'
+        ].join('')
+
+        alertPlaceholder.append(wrapper)
+      }
+    }
+
+  </script>
+</body>
+
+</html>
