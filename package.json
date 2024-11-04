@@ -1,0 +1,14 @@
+{
+  "name": "wukong",
+  "version": "1.0.1",
+  "description": "nodejs distributor framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "rechard.guo",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
