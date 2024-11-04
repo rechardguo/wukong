@@ -40,4 +40,4 @@ class Server{
    }
 }
 
-module.exports={Distributor: Distributor}
+module.exports={Server: Server}
