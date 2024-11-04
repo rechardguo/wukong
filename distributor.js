@@ -12,10 +12,12 @@ class Distributor extends EventEmitter{
    assignTaskInternalId;
    processingTask = [];
    completedTask = [];
+   distrubutorPort =8124;
    packageProcessor = new PackageProcessor();
 
-   constructor(){
+   constructor(distrubutorPort){
       super();
+      this.distrubutorPort = distrubutorPort;
       this.on('exit', (code) => {
         this.processExit(code);
       });
@@ -127,8 +129,9 @@ class Distributor extends EventEmitter{
       throw err;
     });
     
-    this.server.listen(8124, () => {
-      console.log(`server started,running on ${getLocalIP()}:8124`);
+    this.server.listen(
+      this.distrubutorPort, () => {
+      console.log(`server started,running on ${getLocalIP()}:${this.distrubutorPort}`);
       //分配任务
       this.startAssignTask();
     }); 
@@ -196,4 +199,4 @@ class Distributor extends EventEmitter{
   // },10000);
 }
 
-module.exports={DistributeServer: Distributor}
+module.exports={Distributor: Distributor}

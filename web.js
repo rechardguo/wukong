@@ -5,7 +5,7 @@ const {getLocalIP} =require('./common')
 //const {ProtratorDistributeExecutor}=require('./protractorDistributeExecutotr')
 class WebServer {
 
-    constructor(port = 3000) {
+    constructor(port) {
         this.port = port;
         this.pratractorRunning=false;
     }
