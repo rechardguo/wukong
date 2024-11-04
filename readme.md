@@ -21,9 +21,3 @@ server started,running on 192.168.0.172:8124
 3. 浏览器访问 http://192.168.0.172:3000/
 ![页面](web-page.png)
 
-
-
-
-# wukong
-# wukong
-# wukong
