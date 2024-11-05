@@ -1,7 +1,7 @@
 const net = require('node:net');
 const { PackageProcessor } = require('./common');
 
-class client {
+class Client {
   packageProcessor;
   connected = false;
   heartbeatIntervalId;
@@ -60,4 +60,4 @@ class client {
   }
 }
 
-module.exports={client:client}
+module.exports={Client:Client}

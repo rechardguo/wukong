@@ -1,7 +1,7 @@
-const client=require('../client');
-const server=require('../server');
+const { Client } = require('./client');
+const { Server } = require('./server');
 
-module.exports = {
-   client,
-   server
-  };
+export default {
+   Client,
+   Server
+};

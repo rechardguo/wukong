@@ -21,3 +21,12 @@ server started,running on 192.168.0.172:8124
 3. 浏览器访问 http://192.168.0.172:3000/
 ![页面](web-page.png)
 
+# npm 发布
+发布到https://www.npmjs.com上。
+注意package.json里的"name": "@rechardguo/wukong",必须是唯一的，否者会报403无权限。
+
+注意npm 的registry必须是registry.npmjs.org，npm config set registry registry.npmjs.org
+
+npm login
+npm publish --access=public
+
