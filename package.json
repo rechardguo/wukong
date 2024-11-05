@@ -1,5 +1,5 @@
 {
-  "name": "wukong",
+  "name": "@rechardguo/wukong",
   "version": "1.0.1",
   "description": "nodejs distributor framework",
   "main": "index.js",
